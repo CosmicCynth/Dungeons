@@ -66,6 +66,7 @@ function player.shoot(mx,my,id,projectileSpeed)
     projectile.dx = dx / magnitude  
     projectile.dy = dy / magnitude
     projectile.speed = projectileSpeed
+    projectile.angle = 0
 
     table.insert(projectiles.friendly,projectile)
 end

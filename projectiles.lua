@@ -24,7 +24,7 @@ end
 function projectiles.draw()
     for i, projectile in ipairs(projectiles.friendly) do
         if projectile.id == "spear" then
-            love.graphics.draw(Spear,projectile.x,projectile.y,nil,1.5,1.5)
+            love.graphics.draw(Spear,projectile.x,projectile.y,player.angle,1.5,1.5)
         end
     end
 end
