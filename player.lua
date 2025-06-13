@@ -5,6 +5,8 @@ function player.load()
     player.y = 0
     player.speed = 0.5
     player.skin = "Lanca"
+    player.width = 24
+    player.height = 24
 
     --Skins/sprites
     Lanca = love.graphics.newImage("sprites/LancaIDLE.png")
@@ -42,13 +44,13 @@ end
 
 function player.draw()
     if player.skin == "Lanca" then
-        love.graphics.draw(Lanca,player.x,player.y,nil,2,2)
+        love.graphics.draw(Lanca,player.x,player.y,nil,2,2,player.width/2,player.height/2)
     end
 end
 
 function player.mousepressed(x, y, button, istouch, presses)
     if button == 1 then
-        print("pressed")
+        print("pressed "..x.." "..y)
         if player.skin == "Lanca" then
             player.shoot(x,y,"spear",0.5)
         end
@@ -66,7 +68,10 @@ function player.shoot(mx,my,id,projectileSpeed)
     projectile.dx = dx / magnitude  
     projectile.dy = dy / magnitude
     projectile.speed = projectileSpeed
-    projectile.angle = 0
+    projectile.direction = math.atan(dy,dx)
+
+    --Testing
+    print(projectile.direction*(180/math.pi))
 
     table.insert(projectiles.friendly,projectile)
 end
