@@ -4,10 +4,15 @@ function player.load()
     player.x = 0
     player.y = 0
     player.speed = 0.5
-    player.skin = "Lanca"
+    player.skin = "Koechi" -- Lanca or Koechi
     player.width = 24
     player.height = 24
     player.rotation = 2 --love.graphics.draw() change the scale factor to flip image
+    player.weapon = {}
+    player.weapon.x = player.x
+    player.weapon.y = player.y
+    player.weapon.rotation = math.atan2(mouseY-player.y,mouseX-player.x)
+    player.weapon.skin = love.graphics.newImage("sprites/spearProjectile.png")
     
 end
 
@@ -38,14 +43,16 @@ function player.update(dt)
     player.x = player.x + player.speed * directions.x
     player.y = player.y + player.speed * directions.y
     --
+    
 
 end
 
 
 function player.draw()
-    if player.skin == "Lanca" then
-        love.graphics.draw(playeranimations.lanca.idle,player.x,player.y,nil,player.rotation,2,player.width/2,player.height/2)
-    end
+    --[[if player.skin == "Lanca" then
+        --love.graphics.draw(playeranimations.lanca.idle,player.x,player.y,nil,player.rotation,2,player.width/2,player.height/2)
+        playeranimations.lanca.walk:draw(playeranimations.characterSS,player.x,player.y,nil,player.rotation,2,player.width/2,player.height/2)
+    end--]]
 end
 
 function player.mousepressed(x, y, button, istouch, presses)
@@ -53,6 +60,8 @@ function player.mousepressed(x, y, button, istouch, presses)
         print("pressed "..x.." "..y)
         if player.skin == "Lanca" then
             player.shoot(x,y,"spear",0.5)
+        elseif player.skin == "Koechi" then
+            player.shoot(x,y,"orb",0.75)
         end
     end
 end
