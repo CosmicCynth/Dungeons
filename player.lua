@@ -7,9 +7,7 @@ function player.load()
     player.skin = "Lanca"
     player.width = 24
     player.height = 24
-
-    --Skins/sprites
-    Lanca = love.graphics.newImage("sprites/LancaIDLE.png")
+    player.rotation = 2 --love.graphics.draw() change the scale factor to flip image
     
 end
 
@@ -19,8 +17,10 @@ function player.update(dt)
 
     if love.keyboard.isDown("d") then
         directions.x = directions.x + 1
+        player.rotation = 2
     elseif love.keyboard.isDown("a") then
         directions.x = directions.x - 1
+        player.rotation = -2
     end
 
     if love.keyboard.isDown("s") then
@@ -44,7 +44,7 @@ end
 
 function player.draw()
     if player.skin == "Lanca" then
-        love.graphics.draw(Lanca,player.x,player.y,nil,2,2,player.width/2,player.height/2)
+        love.graphics.draw(playeranimations.lanca.idle,player.x,player.y,nil,player.rotation,2,player.width/2,player.height/2)
     end
 end
 
@@ -68,7 +68,7 @@ function player.shoot(mx,my,id,projectileSpeed)
     projectile.dx = dx / magnitude  
     projectile.dy = dy / magnitude
     projectile.speed = projectileSpeed
-    projectile.direction = math.atan(dy,dx)
+    projectile.direction = math.atan2(dy,dx)
 
     --Testing
     print(projectile.direction*(180/math.pi))
