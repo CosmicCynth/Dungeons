@@ -10,6 +10,10 @@ function love.load()
     --Image rendering
     love.graphics.setDefaultFilter("nearest","nearest")
 
+    --Mouse cords
+    mouseX = love.mouse.getX()
+    mouseY = love.mouse.getY()
+
     --Modules
     player.load()
     projectiles.load()
@@ -19,14 +23,19 @@ end
 function love.update(dt)
     player.update(dt)
     projectiles.update(dt)
+    playeranimations.update(dt)
 
+    --Misc
     FPS = tostring(love.timer.getFPS())
+    mouseX = love.mouse.getX()
+    mouseY = love.mouse.getY()
 end
 
 function love.draw()
     love.graphics.print(FPS)
     projectiles.draw()
     player.draw()
+    playeranimations.draw()
 end
 
 function love.mousepressed(x, y, button, istouch, presses)
