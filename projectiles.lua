@@ -24,7 +24,7 @@ end
 function projectiles.draw()
     for i, projectile in ipairs(projectiles.friendly) do
         if projectile.id == "spear" then
-            love.graphics.draw(Spear,projectile.x,projectile.y,projectile.direction,1.5,1.5,0,Spear:getHeight()/2)
+            love.graphics.draw(Spear,projectile.x,projectile.y,projectile.direction,1.5,1.5,5,Spear:getHeight()/2)
         end
     end
 end
