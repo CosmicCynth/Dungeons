@@ -49,10 +49,7 @@ end
 
 
 function player.draw()
-    --[[if player.skin == "Lanca" then
-        --love.graphics.draw(playeranimations.lanca.idle,player.x,player.y,nil,player.rotation,2,player.width/2,player.height/2)
-        playeranimations.lanca.walk:draw(playeranimations.characterSS,player.x,player.y,nil,player.rotation,2,player.width/2,player.height/2)
-    end--]]
+    
 end
 
 function player.mousepressed(x, y, button, istouch, presses)
